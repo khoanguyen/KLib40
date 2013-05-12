@@ -40,7 +40,7 @@ namespace KLib.DependencyInjection.Autofac
         private static IEnumerable<Parameter> GetConstructorParameters(Type targetType, object[] constructorArguments)
         {
             if (constructorArguments == null || constructorArguments.Length == 0)
-                return null;
+                return new Parameter[0];
             var constructors = targetType.GetConstructors();
             var bestMatch = TypeHelpers.GetBestMatch(constructors, constructorArguments);
             if (bestMatch == null)

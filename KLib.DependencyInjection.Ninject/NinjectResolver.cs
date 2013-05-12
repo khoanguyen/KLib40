@@ -46,7 +46,7 @@ namespace KLib.DependencyInjection.Ninject
         private static IParameter[] GetConstructorParameters(Type targetType, object[] constructorArguments)
         {
             if (constructorArguments == null || constructorArguments.Length == 0)
-                return null;
+                return new IParameter[0];
             var constructors = targetType.GetConstructors();
             var bestMatch = TypeHelpers.GetBestMatch(constructors, constructorArguments);
             if (bestMatch == null)

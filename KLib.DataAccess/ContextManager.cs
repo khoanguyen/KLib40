@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace KLib.DataAccess
 {
-    public class ContextManager
+    public class ContextManager : IDisposable
     {
         private readonly Dictionary<Type, IDisposable> _contexts = new Dictionary<Type, IDisposable>();
         private readonly Dictionary<Type, object> _repositories = new Dictionary<Type, object>();
@@ -81,6 +81,11 @@ namespace KLib.DataAccess
         public void SaveAllChanges()
         {
             foreach (var contextType in _contexts.Keys) SaveChanges(contextType);
+        }
+
+        public void Dispose()
+        {
+            foreach (var context in _contexts) context.Value.Dispose();
         }
     }
 }
