@@ -18,7 +18,7 @@ namespace KLib.DataAccess
             RepositoryFactory = new GenericRepositoryFactory();
         }
 
-        public virtual IDisposable GetContext(Type contextType)
+        public virtual IDisposable Context(Type contextType)
         {
             if (!_contexts.ContainsKey(contextType))
                 _contexts[contextType] = Activator.CreateInstance(contextType) as IDisposable;
@@ -26,7 +26,7 @@ namespace KLib.DataAccess
             return _contexts[contextType];
         }
 
-        public virtual TContext GetContext<TContext>() where TContext : IDisposable
+        public virtual TContext Context<TContext>() where TContext : IDisposable
         {
             var contextType = typeof (TContext);
             if (!_contexts.ContainsKey(contextType))
@@ -35,14 +35,14 @@ namespace KLib.DataAccess
             return (TContext) _contexts[contextType];
         }
 
-        public virtual IRepository<TContext, TEntity> GetRepository<TContext, TEntity>()
+        public virtual IRepository<TContext, TEntity> Repository<TContext, TEntity>()
             where TEntity : class
             where TContext : IDisposable
         {            
-            return GetRepository(typeof(TContext), typeof(TEntity)) as IRepository<TContext, TEntity>;
+            return Repository(typeof(TContext), typeof(TEntity)) as IRepository<TContext, TEntity>;
         }
 
-        public virtual object GetRepository(Type contextType, Type entityType) 
+        public virtual object Repository(Type contextType, Type entityType) 
         {
             if (!_repositories.ContainsKey(entityType))
             {

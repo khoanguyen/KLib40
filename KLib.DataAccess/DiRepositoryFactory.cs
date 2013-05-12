@@ -19,13 +19,13 @@ namespace KLib.DataAccess
             where TContext : IDisposable
             where TEntity : class
         {
-            return _resolver.CreateInstance<IRepository<TContext, TEntity>>(contextManager.GetContext<TContext>());
+            return _resolver.CreateInstance<IRepository<TContext, TEntity>>(contextManager.Context<TContext>());
         }
 
         public virtual object CreateRepository(Type contextType, Type entityType, ContextManager contextManager)
         {
             var repositoryType = typeof(IRepository<,>).MakeGenericType(contextType, entityType);
-            return _resolver.CreateInstance(repositoryType, contextManager.GetContext(contextType));
+            return _resolver.CreateInstance(repositoryType, contextManager.Context(contextType));
         }
         
     }
