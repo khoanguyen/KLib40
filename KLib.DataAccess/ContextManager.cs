@@ -78,14 +78,24 @@ namespace KLib.DataAccess
             SaveChanges(typeof (TContext));
         }
 
-        public void SaveAllChanges()
+        public virtual void SaveAllChanges()
         {
             foreach (var contextType in _contexts.Keys) SaveChanges(contextType);
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
-            foreach (var context in _contexts) context.Value.Dispose();
+            foreach (var context in _contexts)
+            {
+                try
+                {
+                    context.Value.Dispose();
+                }
+                catch (Exception)
+                {
+                    // Do nothing
+                }
+            }
         }
     }
 }
