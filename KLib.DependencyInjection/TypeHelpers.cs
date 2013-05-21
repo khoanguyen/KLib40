@@ -8,6 +8,12 @@ namespace KLib.DependencyInjection
 {
     public static class TypeHelpers
     {
+        /// <summary>
+        /// Find the best match constructor for given set of arguments
+        /// </summary>
+        /// <param name="constructors">List of constructors</param>
+        /// <param name="constructorArguments">Set of constructor arguments</param>
+        /// <returns></returns>
         public static ConstructorInfo GetBestMatch(IEnumerable<ConstructorInfo> constructors,
                                                     object[] constructorArguments)
         {

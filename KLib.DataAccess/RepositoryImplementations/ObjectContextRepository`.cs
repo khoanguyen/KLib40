@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Objects;
 using System.Diagnostics;
@@ -9,17 +10,17 @@ using System.Text;
 
 namespace KLib.DataAccess.RepositoryImplementations
 {
-    internal sealed class ObjectContextRepository<TContext, TEntity> : IRepository<TContext, TEntity>
+    internal sealed class ObjectContextRepository<TContext, TEntity> : RepositoryImplementationBase<TEntity>, IRepository<TContext, TEntity>
         where TEntity : class
         where TContext : IDisposable
     {
-        public TContext Context { get; private set; }
+        public TContext Context { get; set; }
 
         private ObjectContext ObjContext { get; set; }
 
         internal ObjectSet<TEntity> ObjectSet { get; private set; }
 
-        private string QualifiedEntitySetName { get; set; }    
+        private string QualifiedEntitySetName { get; set; }
 
         internal ObjectContextRepository(TContext context)
         {
@@ -59,16 +60,23 @@ namespace KLib.DataAccess.RepositoryImplementations
             return ObjectSet.FirstOrDefault(predicate);
         }
 
-        public void Update(TEntity entity, IEnumerable<string> changeSet)
+        public void Add(TEntity entity)
         {
-            var entry = GetEntityEntry(entity);
-            foreach (var propName in changeSet) entry.SetModifiedProperty(propName);
+            EnsureEntityValidity(entity);
+            ObjectSet.AddObject(entity);
         }
 
-        public void Replace(TEntity entity)
+        public void Update(TEntity entity, params Expression<Func<TEntity, object>>[] changeSet)
         {
             var entry = GetEntityEntry(entity);
-            entry.SetModified();
+            foreach (var propName in GetChangeSet(changeSet))
+                entry.SetModifiedProperty(propName);
+        }
+
+        public void ReplaceWith(TEntity entity)
+        {
+            var entry = GetEntityEntry(entity);
+            entry.ChangeState(EntityState.Modified);
         }
 
         public void Remove(TEntity entity)
@@ -91,6 +99,12 @@ namespace KLib.DataAccess.RepositoryImplementations
                 entry = ObjContext.ObjectStateManager.GetObjectStateEntry(entity);
             }
             return entry;
-        } 
+        }
+
+        private void EnsureEntityValidity(TEntity entity)
+        {
+            // Do nothing looking for a way to validate ObjectContext's entites
+            // At the moment just expecting an Exception when saving changes
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
@@ -9,11 +10,11 @@ using System.Text;
 
 namespace KLib.DataAccess.RepositoryImplementations
 {
-    internal sealed class DbContextRepository<TContext, TEntity> : IRepository<TContext, TEntity>
+    internal sealed class DbContextRepository<TContext, TEntity> : RepositoryImplementationBase<TEntity>, IRepository<TContext, TEntity>
         where TEntity : class
         where TContext : IDisposable
     {
-        public TContext Context { get; private set; }
+        public TContext Context { get; set; }
 
         private DbContext DbContext { get; set; }
 
@@ -42,18 +43,27 @@ namespace KLib.DataAccess.RepositoryImplementations
             return DbSet.FirstOrDefault(predicate);
         }
 
-        public void Update(TEntity entity, IEnumerable<string> changeSet)
+        public void Add(TEntity entity)
         {
+            EnsureEntityValidity(entity);
+            DbSet.Add(entity);
+        }
+
+        public void Update(TEntity entity, params Expression<Func<TEntity, object>>[] changeSet)
+        {
+            EnsureEntityValidity(entity);
             var entry = GetEntry(entity);
-            foreach (var propEntry in changeSet.Select(entry.Property)
-                                               .Where(propEntry => propEntry != null))
+            foreach (var propEntry in GetChangeSet(changeSet)
+                                        .Select(entry.Property)
+                                        .Where(propEntry => propEntry != null))
             {
                 propEntry.IsModified = true;
             }
         }
 
-        public void Replace(TEntity entity)
+        public void ReplaceWith(TEntity entity)
         {
+            EnsureEntityValidity(entity);
             var entry = GetEntry(entity);
             entry.State = System.Data.EntityState.Modified;
         }
@@ -75,6 +85,17 @@ namespace KLib.DataAccess.RepositoryImplementations
             if (entry.State == System.Data.EntityState.Detached)
                 DbSet.Attach(entity);
             return entry;
-        } 
+        }
+
+        private void EnsureEntityValidity(TEntity entity)
+        {
+            var entry = GetEntry(entity);
+            var result = entry.GetValidationResult();
+
+            if (!result.IsValid)
+            {
+                throw new DbEntityValidationException("Entity is not valid", new[] { result });
+            }
+        }
     }
 }
