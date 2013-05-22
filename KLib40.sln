@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KLib.DependencyInjection.Ni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KLib.DependencyInjection.Autofac", "KLib.DependencyInjection.Autofac\KLib.DependencyInjection.Autofac.csproj", "{F7426375-2CDD-424D-BAAA-57F9BBC8851B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KLib.WcfExtension", "KLib.WcfExtension\KLib.WcfExtension.csproj", "{28AE14A0-4149-4B07-85ED-5B158798306C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.KLib.WcfExtension", "UnitTest.KLib.WcfExtension\UnitTest.KLib.WcfExtension.csproj", "{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = KLib40.vsmdi
@@ -90,11 +94,32 @@ Global
 		{F7426375-2CDD-424D-BAAA-57F9BBC8851B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F7426375-2CDD-424D-BAAA-57F9BBC8851B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F7426375-2CDD-424D-BAAA-57F9BBC8851B}.Release|x86.ActiveCfg = Release|Any CPU
+		{28AE14A0-4149-4B07-85ED-5B158798306C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28AE14A0-4149-4B07-85ED-5B158798306C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28AE14A0-4149-4B07-85ED-5B158798306C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{28AE14A0-4149-4B07-85ED-5B158798306C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{28AE14A0-4149-4B07-85ED-5B158798306C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{28AE14A0-4149-4B07-85ED-5B158798306C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28AE14A0-4149-4B07-85ED-5B158798306C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28AE14A0-4149-4B07-85ED-5B158798306C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{28AE14A0-4149-4B07-85ED-5B158798306C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{28AE14A0-4149-4B07-85ED-5B158798306C}.Release|x86.ActiveCfg = Release|Any CPU
+		{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{798743F4-662B-4142-9B7F-B2FF8093742F} = {49F2FA0F-D8CD-454A-8408-621E8358EAFB}
+		{5980A40D-1F4C-45B0-9485-A8BCC2A77ECB} = {49F2FA0F-D8CD-454A-8408-621E8358EAFB}
 	EndGlobalSection
 EndGlobal
