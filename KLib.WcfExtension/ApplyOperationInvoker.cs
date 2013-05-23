@@ -8,40 +8,17 @@ using System.ServiceModel.Dispatcher;
 
 namespace KLib.WcfExtension
 {
-    public class ApplyOperationInvoker : Attribute, IServiceBehavior, IOperationBehavior
+    public class ApplyOperationInvoker : Attribute, IOperationBehavior
     {
         private readonly Type _invokerType;
 
         public ApplyOperationInvoker(Type invokerType)
         {
             if (invokerType == null) throw new ArgumentNullException("invokerType");
-            if (!TypeHelper.IsTypeOf<IOperationInvoker>(invokerType))
-                throw new ArgumentException("invokerType should implement IOperationInvoker interface");
-
+            if (!TypeHelper.IsTypeOf<OperationInvokerBase>(invokerType))
+                throw new ArgumentException("invokerType should inherit KLib.WcfExtension.OperationInvokerBase");
             _invokerType = invokerType;
-        }
-
-        #region IServiceBehavior
-        public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
-        {
-        }
-
-        public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints,
-                                         BindingParameterCollection bindingParameters)
-        {
-        }
-
-        public void ApplyDispatchBehavior(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
-        {
-            foreach (var operation in serviceHostBase.ChannelDispatchers
-                                                             .OfType<ChannelDispatcher>()
-                                                             .SelectMany(cd => cd.Endpoints)
-                                                             .SelectMany(ep => ep.DispatchRuntime.Operations))
-            {
-                operation.Invoker = TypeHelper.CreateInstance<IOperationInvoker>(_invokerType);
-            }
-        } 
-        #endregion
+        }        
 
         #region IOperationBehavior
         public void AddBindingParameters(OperationDescription operationDescription, BindingParameterCollection bindingParameters)
@@ -54,7 +31,7 @@ namespace KLib.WcfExtension
 
         public void ApplyDispatchBehavior(OperationDescription operationDescription, DispatchOperation dispatchOperation)
         {
-            dispatchOperation.Invoker = TypeHelper.CreateInstance<IOperationInvoker>(_invokerType);
+            dispatchOperation.Invoker = TypeHelper.CreateInstance<IOperationInvoker>(_invokerType, dispatchOperation);
         }
 
         public void Validate(OperationDescription operationDescription)

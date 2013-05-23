@@ -9,9 +9,9 @@ namespace KLib.WcfExtension
             return typeof(T).IsAssignableFrom(type);
         }
 
-        public static T CreateInstance<T>(Type type)
+        public static T CreateInstance<T>(Type type, params object[] constructorArguments)
         {
-            return (T) Activator.CreateInstance(type);
+            return (T) Activator.CreateInstance(type, constructorArguments);
         }
     }
 }

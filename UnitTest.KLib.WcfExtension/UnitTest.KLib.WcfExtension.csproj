@@ -55,10 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplyMessageInspectorTest.cs" />
+    <Compile Include="ApplyOperationInvokerTest.cs" />
     <Compile Include="DependencyInjectionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClasses\ITestOperationInvokerService.cs" />
     <Compile Include="TestClasses\ITestService2.cs" />
     <Compile Include="TestClasses\TestMessageInspector.cs" />
+    <Compile Include="TestClasses\TestOperationInvoker.cs" />
+    <Compile Include="TestClasses\TestOperationInvokerService.cs" />
     <Compile Include="TestClasses\TestServiceSingle.cs" />
     <Compile Include="TestClasses\TestServicePerSession.cs" />
     <Compile Include="TestClasses\EnglishStringProvider.cs" />

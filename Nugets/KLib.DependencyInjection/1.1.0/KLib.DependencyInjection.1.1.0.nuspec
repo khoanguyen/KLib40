@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>KLib.DependencyInjection</id>
+        <version>1.1.0</version>
+        <title />
+        <authors>Khoa M. Nguyen</authors>
+        <owners />
+        <projectUrl>https://github.com/khoanguyen/KLib40</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Abstraction for DependencyInjection feature of other packages</description>
+    </metadata>
+    <files>
+        <file src="lib\net40\KLib.DependencyInjection.dll" target="lib\net40\KLib.DependencyInjection.dll" />
+    </files>
+</package>

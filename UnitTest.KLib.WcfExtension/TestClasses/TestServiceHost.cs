@@ -17,12 +17,14 @@ namespace UnitTest.KLib.WcfExtension.TestClasses
         public Uri OperationBehaviorUri { get; private set; }
         public Uri EndpointBehaviorUri { get; private set; }
         public Uri EndpointBehaviorUri2 { get; private set; }
+        public Uri OperationInvokerUri { get; private set; }
 
         public ServiceHost PerCallHost { get; private set; }
         public ServiceHost SingleHost { get; private set; }
         public ServiceHost ServiceBehaviorHost { get; private set; }
         public ServiceHost ContractBehaviorHost { get; private set; }
         public ServiceHost EndpointBeaviorHost { get; private set; }
+        public ServiceHost OperationInvokerHost { get; private set; }
 
         public void Init()
         {
@@ -33,6 +35,7 @@ namespace UnitTest.KLib.WcfExtension.TestClasses
             OperationBehaviorUri = new Uri("net.pipe://localhost/TestContractBehavior");
             EndpointBehaviorUri = new Uri("net.pipe://localhost/TestEndpointBehavior");
             EndpointBehaviorUri2 = new Uri("net.pipe://localhost/TestEndpointBehavior2");
+            OperationInvokerUri = new Uri("net.pipe://localhost/TestOperationInvoker");
             //var binding = new NetNamedPipeBinding();
 
             PerCallHost = new ServiceHost(typeof (TestServicePerCall));
@@ -59,6 +62,10 @@ namespace UnitTest.KLib.WcfExtension.TestClasses
                                .Single(ep => ep.Address.Uri == EndpointBehaviorUri)
                                .Behaviors
                                .Add(new ApplyMessageInspector(typeof (TestMessageInspector)));
+
+            OperationInvokerHost = new ServiceHost(typeof (TestOperationInvokerService));
+            OperationInvokerHost.AddServiceEndpoint(typeof(ITestOperationInvokerService), new NetNamedPipeBinding(),
+                                                    OperationInvokerUri); 
         }
     }
 }

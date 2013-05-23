@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>KLib.DependencyInjection.Autofac</id>
+        <version>1.1.0</version>
+        <title />
+        <authors>Khoa M. Nguyen</authors>
+        <owners />
+        <projectUrl>https://github.com/khoanguyen/KLib40</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>KLib.DependencyInjection with Autofac</description>
+        <dependencies>
+            <dependency id="Autofac" />
+            <dependency id="KLib.DependencyInjection" version="1.1.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="lib\net40\KLib.DependencyInjection.Autofac.dll" target="lib\net40\KLib.DependencyInjection.Autofac.dll" />
+    </files>
+</package>

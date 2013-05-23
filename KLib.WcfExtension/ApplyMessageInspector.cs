@@ -39,7 +39,7 @@ namespace KLib.WcfExtension
         {
             if (!TypeHelper.IsTypeOf<IDispatchMessageInspector>(_inspectorType)) return;
             var inspector = TypeHelper.CreateInstance<IDispatchMessageInspector>(_inspectorType);
-            endpointDispatcher.DispatchRuntime.MessageInspectors.Add(inspector);            
+            endpointDispatcher.DispatchRuntime.MessageInspectors.Add(inspector);              
         }
 
         public void Validate(ServiceEndpoint endpoint)

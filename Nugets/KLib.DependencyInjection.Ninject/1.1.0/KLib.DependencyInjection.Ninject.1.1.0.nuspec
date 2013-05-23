@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>KLib.DependencyInjection.Ninject</id>
+        <version>1.1.0</version>
+        <title />
+        <authors>Khoa M. Nguyen</authors>
+        <owners />
+        <projectUrl>https://github.com/khoanguyen/KLib40</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>KLib.DependencyInjection with Ninject</description>
+        <dependencies>
+            <dependency id="Ninject" />
+            <dependency id="KLib.DependencyInjection" version="1.1.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="lib\net40\KLib.DependencyInjection.Ninject.dll" target="lib\net40\KLib.DependencyInjection.Ninject.dll" />
+    </files>
+</package>

@@ -14,7 +14,7 @@ namespace KLib.WcfExtension.Configurations
     {        
         private const string InspectorTypeKey = "inspectorType";
 
-        [ConfigurationProperty(InspectorTypeKey)]
+        [ConfigurationProperty(InspectorTypeKey, IsRequired = true)]
         public string InspectorType
         {
             get { return (string)this[InspectorTypeKey]; }

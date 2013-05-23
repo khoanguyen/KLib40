@@ -11,7 +11,7 @@ namespace KLib.WcfExtension.Configurations
     {
         private const string ResolverFactoryTypeKey = "resolverFactoryType";
 
-        [ConfigurationProperty(ResolverFactoryTypeKey)]
+        [ConfigurationProperty(ResolverFactoryTypeKey, IsRequired = true)]
         public string ResolverFactoryType
         {
             get { return (string)this[ResolverFactoryTypeKey]; }
