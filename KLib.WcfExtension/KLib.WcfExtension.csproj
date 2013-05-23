@@ -42,13 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplyOperationInvoker.cs" />
     <Compile Include="Configurations\ApplyMessageInspectorExtensionElement.cs" />
+    <Compile Include="Configurations\ApplyOperationInvokerExtensionElement.cs" />
     <Compile Include="Configurations\DiServiceBehaviorExtensionElement.cs" />
-    <Compile Include="DependencyInjection\DiInstanceContextInitializer.cs" />
-    <Compile Include="DependencyInjection\DiServiceBehavior.cs" />
-    <Compile Include="Dispatch\ApplyMessageInspector.cs" />
+    <Compile Include="DiInstanceContextInitializer.cs" />
+    <Compile Include="ApplyDependencyInjection.cs" />
+    <Compile Include="ApplyMessageInspector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceBehaviorBase.cs" />
+    <Compile Include="TypeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KLib.DependencyInjection\KLib.DependencyInjection.csproj">

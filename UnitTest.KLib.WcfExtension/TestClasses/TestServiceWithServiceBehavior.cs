@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using KLib.WcfExtension.Dispatch;
+using KLib.WcfExtension;
 
 namespace UnitTest.KLib.WcfExtension.TestClasses
 {

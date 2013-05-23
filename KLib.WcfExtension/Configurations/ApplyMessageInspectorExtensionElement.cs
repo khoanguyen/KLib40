@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Linq;
 using System.ServiceModel.Configuration;
 using System.Text;
-using KLib.WcfExtension.Dispatch;
 
 namespace KLib.WcfExtension.Configurations
 {

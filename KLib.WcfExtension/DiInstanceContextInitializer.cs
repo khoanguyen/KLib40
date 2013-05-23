@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
-using System.Text;
 using KLib.DependencyInjection;
 
-namespace KLib.WcfExtension.DependencyInjection
+namespace KLib.WcfExtension
 {
     public class DiInstanceContextInitializer : IInstanceContextInitializer
     {

@@ -4,8 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Text;
-using KLib.WcfExtension.DependencyInjection;
-using KLib.WcfExtension.Dispatch;
+using KLib.WcfExtension;
 
 namespace UnitTest.KLib.WcfExtension.TestClasses
 {
@@ -38,11 +37,11 @@ namespace UnitTest.KLib.WcfExtension.TestClasses
 
             PerCallHost = new ServiceHost(typeof (TestServicePerCall));
             PerCallHost.AddServiceEndpoint(typeof (ITestService), new NetNamedPipeBinding(), PerCallServiceUri);
-            PerCallHost.Description.Behaviors.Add(new DiServiceBehavior(typeof (TestResolverFactory)));
+            PerCallHost.Description.Behaviors.Add(new ApplyDependencyInjection(typeof (TestResolverFactory)));
 
             SingleHost = new ServiceHost(typeof (TestServiceSingle));
             SingleHost.AddServiceEndpoint(typeof (ITestService), new NetNamedPipeBinding(), SingleServiceUri);
-            SingleHost.Description.Behaviors.Add(new DiServiceBehavior(typeof (TestResolverFactory)));
+            SingleHost.Description.Behaviors.Add(new ApplyDependencyInjection(typeof (TestResolverFactory)));
 
             ServiceBehaviorHost = new ServiceHost(typeof (TestServiceWithServiceBehavior));
             ServiceBehaviorHost.AddServiceEndpoint(typeof (ITestService), new NetNamedPipeBinding(), ServiceBehaviorUri);
@@ -54,7 +53,7 @@ namespace UnitTest.KLib.WcfExtension.TestClasses
             EndpointBeaviorHost = new ServiceHost(typeof (TestServiceSingle));
             EndpointBeaviorHost.AddServiceEndpoint(typeof(ITestService), new NetNamedPipeBinding(), EndpointBehaviorUri);
             EndpointBeaviorHost.AddServiceEndpoint(typeof(ITestService), new NetNamedPipeBinding(), EndpointBehaviorUri2);
-            EndpointBeaviorHost.Description.Behaviors.Add(new DiServiceBehavior(typeof(TestResolverFactory)));
+            EndpointBeaviorHost.Description.Behaviors.Add(new ApplyDependencyInjection(typeof(TestResolverFactory)));
             EndpointBeaviorHost.Description
                                .Endpoints
                                .Single(ep => ep.Address.Uri == EndpointBehaviorUri)

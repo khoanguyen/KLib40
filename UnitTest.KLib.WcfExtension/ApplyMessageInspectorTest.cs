@@ -4,7 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Dispatcher;
 using System.Text;
-using KLib.WcfExtension.Dispatch;
+using KLib.WcfExtension;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnitTest.KLib.WcfExtension.TestClasses;
 

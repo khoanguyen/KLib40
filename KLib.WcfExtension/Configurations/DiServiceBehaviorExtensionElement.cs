@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.ServiceModel.Configuration;
-using System.Text;
-using KLib.WcfExtension.DependencyInjection;
 
 namespace KLib.WcfExtension.Configurations
 {
@@ -24,14 +20,14 @@ namespace KLib.WcfExtension.Configurations
 
         public override Type BehaviorType
         {
-            get { return typeof(DiServiceBehavior); }
+            get { return typeof(ApplyDependencyInjection); }
         }
 
         protected override object CreateBehavior()
         {
             // Get Factory type and create service behavior
             var resolverFactoryType = Type.GetType(ResolverFactoryType);
-            return new DiServiceBehavior(resolverFactoryType);
+            return new ApplyDependencyInjection(resolverFactoryType);
         }
     }
 }
