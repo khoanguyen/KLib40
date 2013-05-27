@@ -32,6 +32,25 @@ namespace UnitTest.KLib.WcfExtension
             _host.OperationInvokerHost.BeginClose(null, null);
         }
 
+        [TestMethod]
+        public void TestOperationInvokerAsServiceBehavior()
+        {
+            _host.OperationInvokerHost2.Open();
+            var client = GetServiceClient<ITestOperationInvokerService>(_host.OperationInvokerUri2);
+            client.SayHello();
+
+            Assert.AreEqual("Test Operation Invoker Invoked", TestOperationInvoker.Message);
+
+            TestOperationInvoker.Reset();
+            Assert.AreEqual(string.Empty, TestOperationInvoker.Message);
+
+            client.SayGoodBye();
+
+            Assert.AreEqual("Test Operation Invoker Invoked", TestOperationInvoker.Message);
+
+            _host.OperationInvokerHost.BeginClose(null, null);
+        }
+
         private static T GetServiceClient<T>(Uri serviceUri)
         {
             var factory = new ChannelFactory<T>(new NetNamedPipeBinding(), new EndpointAddress(serviceUri));

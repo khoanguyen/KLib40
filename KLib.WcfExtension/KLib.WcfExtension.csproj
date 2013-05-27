@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ApplyOperationInvoker.cs" />
     <Compile Include="Configurations\ApplyMessageInspectorExtensionElement.cs" />
+    <Compile Include="Configurations\ApplyOperationInvokerExtensionElement.cs" />
     <Compile Include="Configurations\DiServiceBehaviorExtensionElement.cs" />
     <Compile Include="DiInstanceContextInitializer.cs" />
     <Compile Include="ApplyDependencyInjection.cs" />

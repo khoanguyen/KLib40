@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.ServiceModel.Configuration;
-using System.Text;
 
 namespace KLib.WcfExtension.Configurations
 {
@@ -15,7 +12,7 @@ namespace KLib.WcfExtension.Configurations
         private const string InspectorTypeKey = "inspectorType";
 
         [ConfigurationProperty(InspectorTypeKey, IsRequired = true)]
-        public string InspectorType
+        public string InspectorTypeString
         {
             get { return (string)this[InspectorTypeKey]; }
             set { this[InspectorTypeKey] = value; }
@@ -23,7 +20,7 @@ namespace KLib.WcfExtension.Configurations
 
         protected override object CreateBehavior()
         {
-            var type = Type.GetType(InspectorType);
+            var type = Type.GetType(InspectorTypeString);
             return new ApplyMessageInspector(type);
         }
 

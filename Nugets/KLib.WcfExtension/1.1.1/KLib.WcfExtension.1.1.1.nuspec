@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>KLib.WcfExtension</id>
+        <version>1.1.1</version>
+        <title />
+        <authors>Khoa M. Nguyen</authors>
+        <owners>Khoa M. Nguyen</owners>
+        <projectUrl>https://github.com/khoanguyen/KLib40</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Extension for WCF</description>
+        <dependencies>
+            <dependency id="KLib.DependencyInjection" version="1.1.0" />
+        </dependencies>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System.ServiceModel" targetFramework="" />
+            <frameworkAssembly assemblyName="System.Configuration" targetFramework="" />
+        </frameworkAssemblies>
+    </metadata>
+    <files>
+        <file src="content\net40\app.config.transform" target="content\net40\app.config.transform" />
+        <file src="content\net40\web.config.transform" target="content\net40\web.config.transform" />
+        <file src="..\..\..\KLib.WcfExtension\bin\Release\KLib.WcfExtension.dll" target="lib\net40\KLib.WcfExtension.dll" />
+    </files>
+</package>

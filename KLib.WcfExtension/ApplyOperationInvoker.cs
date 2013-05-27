@@ -8,7 +8,7 @@ using System.ServiceModel.Dispatcher;
 
 namespace KLib.WcfExtension
 {
-    public class ApplyOperationInvoker : Attribute, IOperationBehavior
+    public class ApplyOperationInvoker : Attribute, IServiceBehavior, IOperationBehavior
     {
         private readonly Type _invokerType;
 
@@ -36,6 +36,26 @@ namespace KLib.WcfExtension
 
         public void Validate(OperationDescription operationDescription)
         {
+        } 
+        #endregion
+
+        #region IServiceBehavior
+        public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
+        {
+        }
+
+        public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints,
+                                         BindingParameterCollection bindingParameters)
+        {
+        }
+
+        public void ApplyDispatchBehavior(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
+        {
+            foreach (var operationDescription in serviceDescription.Endpoints
+                                                                   .SelectMany(ep => ep.Contract.Operations))
+            {
+                operationDescription.Behaviors.Add(new ApplyOperationInvoker(_invokerType));
+            }
         } 
         #endregion
     }

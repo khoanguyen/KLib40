@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<configuration>
+  <system.serviceModel>
+    <extensions>
+      <behaviorExtensions>
+        <add name="dependencyInjection" type="KLib.WcfExtension.Configurations.DiServiceBehaviorExtensionElement,KLib.WcfExtension" />
+        <add name="messageInspector" type="KLib.WcfExtension.Configurations.ApplyMessageInspectorExtensionElement,KLib.WcfExtension" /> 
+        <add name="operationInvoker" type="KLib.WcfExtension.Configurations.ApplyOperationInvokerExtensionElement,KLib.WcfExtension" />        
+      </behaviorExtensions>
+    </extensions>
+  </system.serviceModel>
+</configuration>

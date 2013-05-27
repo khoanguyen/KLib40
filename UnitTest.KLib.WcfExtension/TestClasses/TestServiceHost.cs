@@ -18,6 +18,7 @@ namespace UnitTest.KLib.WcfExtension.TestClasses
         public Uri EndpointBehaviorUri { get; private set; }
         public Uri EndpointBehaviorUri2 { get; private set; }
         public Uri OperationInvokerUri { get; private set; }
+        public Uri OperationInvokerUri2 { get; private set; }
 
         public ServiceHost PerCallHost { get; private set; }
         public ServiceHost SingleHost { get; private set; }
@@ -25,6 +26,7 @@ namespace UnitTest.KLib.WcfExtension.TestClasses
         public ServiceHost ContractBehaviorHost { get; private set; }
         public ServiceHost EndpointBeaviorHost { get; private set; }
         public ServiceHost OperationInvokerHost { get; private set; }
+        public ServiceHost OperationInvokerHost2 { get; private set; }
 
         public void Init()
         {
@@ -36,6 +38,7 @@ namespace UnitTest.KLib.WcfExtension.TestClasses
             EndpointBehaviorUri = new Uri("net.pipe://localhost/TestEndpointBehavior");
             EndpointBehaviorUri2 = new Uri("net.pipe://localhost/TestEndpointBehavior2");
             OperationInvokerUri = new Uri("net.pipe://localhost/TestOperationInvoker");
+            OperationInvokerUri2 = new Uri("net.pipe://localhost/TestOperationInvoker2");
             //var binding = new NetNamedPipeBinding();
 
             PerCallHost = new ServiceHost(typeof (TestServicePerCall));
@@ -65,7 +68,11 @@ namespace UnitTest.KLib.WcfExtension.TestClasses
 
             OperationInvokerHost = new ServiceHost(typeof (TestOperationInvokerService));
             OperationInvokerHost.AddServiceEndpoint(typeof(ITestOperationInvokerService), new NetNamedPipeBinding(),
-                                                    OperationInvokerUri); 
+                                                    OperationInvokerUri);
+
+            OperationInvokerHost2 = new ServiceHost(typeof(TestOperationInvokerServiceWithServiceBehavior));
+            OperationInvokerHost2.AddServiceEndpoint(typeof(ITestOperationInvokerService), new NetNamedPipeBinding(),
+                                                    OperationInvokerUri2); 
         }
     }
 }
