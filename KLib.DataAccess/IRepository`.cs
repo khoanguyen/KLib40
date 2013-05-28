@@ -13,7 +13,7 @@ namespace KLib.DataAccess
     /// <typeparam name="TEntity"></typeparam>
     public interface IRepository<TContext, TEntity>
         where TEntity : class
-        where TContext : IDisposable
+        where TContext : class, IDisposable
     {
         /// <summary>
         /// Associated context, this could be DbContext or ObjectContext

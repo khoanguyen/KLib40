@@ -15,7 +15,7 @@ namespace KLib.DataAccess
     /// <typeparam name="TEntity"></typeparam>
     public class Repository<TContext, TEntity> : IRepository<TContext, TEntity>
         where TEntity : class
-        where TContext : IDisposable
+        where TContext : class, IDisposable
     {
         private IRepository<TContext, TEntity> _implementation;
         private TContext _context;
@@ -28,15 +28,20 @@ namespace KLib.DataAccess
             get { return _context; }
             set
             {
+                if (_context == value) return;
                 var contextType = typeof(TContext);
                 _context = value;
                 if (typeof(DbContext).IsAssignableFrom(contextType))
                 {
                     _implementation = new DbContextRepository<TContext, TEntity>(_context);
                 }
-                else if (typeof(ObjectContext).IsAssignableFrom(contextType))
+                else if (typeof (ObjectContext).IsAssignableFrom(contextType))
                 {
                     _implementation = new ObjectContextRepository<TContext, TEntity>(_context);
+                }
+                else
+                {
+                    throw new ArgumentException("Context value should be a derived class of ObjectContext or DbContext");
                 }
             }
         }

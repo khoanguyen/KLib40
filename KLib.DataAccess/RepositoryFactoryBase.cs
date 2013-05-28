@@ -46,7 +46,7 @@ namespace KLib.DataAccess
 
         #region Abstract methods of IRepositoryFactory
         public abstract IRepository<TContext, TEntity> CreateRepository<TContext, TEntity>(ContextManager contextManager)
-            where TContext : IDisposable
+            where TContext : class, IDisposable
             where TEntity : class;
 
         public abstract object CreateRepository(Type contextType, Type entityType, ContextManager contextManager);

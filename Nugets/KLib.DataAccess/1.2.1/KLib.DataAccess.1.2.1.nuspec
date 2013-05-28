@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>KLib.DataAccess</id>
+        <version>1.2.1</version>
+        <title />
+        <authors>Khoa M. Nguyen</authors>
+        <owners />
+        <projectUrl>https://github.com/khoanguyen/KLib40</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>DataAccess layer implementation</description>
+        <dependencies>
+            <dependency id="EntityFramework" />
+            <dependency id="KLib.DependencyInjection" version="1.1.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\..\..\KLib.DataAccess\bin\Release\KLib.DataAccess.dll" target="lib\net40\KLib.DataAccess.dll" />
+    </files>
+</package>

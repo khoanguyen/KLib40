@@ -88,7 +88,7 @@ namespace KLib.DataAccess
         /// <returns></returns>
         public virtual IRepository<TContext, TEntity> Repository<TContext, TEntity>()
             where TEntity : class
-            where TContext : IDisposable
+            where TContext : class, IDisposable
         {
             return Repository(typeof(TContext), typeof(TEntity)) as IRepository<TContext, TEntity>;
         }

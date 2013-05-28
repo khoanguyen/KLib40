@@ -12,7 +12,7 @@ namespace KLib.DataAccess.RepositoryImplementations
 {
     internal sealed class DbContextRepository<TContext, TEntity> : RepositoryImplementationBase<TEntity>, IRepository<TContext, TEntity>
         where TEntity : class
-        where TContext : IDisposable
+        where TContext : class, IDisposable
     {
         private TContext _context;
 
@@ -21,7 +21,7 @@ namespace KLib.DataAccess.RepositoryImplementations
             get { return _context; }
             set
             {
-                if (_context.Equals(value)) return;
+                if (_context == value) return;
                 Debug.Assert(_context is DbContext);
                 _context = value;
                 DbContext = _context as DbContext;

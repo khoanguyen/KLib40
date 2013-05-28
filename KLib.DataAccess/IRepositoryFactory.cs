@@ -19,7 +19,7 @@ namespace KLib.DataAccess
         /// <returns></returns>
         IRepository<TContext, TEntity> CreateRepository<TContext, TEntity>(ContextManager contextManager)
             where TEntity : class
-            where TContext : IDisposable;
+            where TContext : class, IDisposable;
 
         /// <summary>
         /// Create a new repository from given contextType, entityType and ContextManager
