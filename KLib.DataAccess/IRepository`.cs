@@ -7,7 +7,7 @@ using System.Text;
 namespace KLib.DataAccess
 {
     /// <summary>
-    /// Interface on Repository
+    /// Interface of Repository
     /// </summary>
     /// <typeparam name="TContext"></typeparam>
     /// <typeparam name="TEntity"></typeparam>

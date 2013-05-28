@@ -14,7 +14,21 @@ namespace KLib.DataAccess.RepositoryImplementations
         where TEntity : class
         where TContext : IDisposable
     {
-        public TContext Context { get; set; }
+        private TContext _context;
+
+        public TContext Context
+        {
+            get { return _context; }
+            set
+            {
+                if (_context.Equals(value)) return;
+                Debug.Assert(_context is ObjectContext);
+                _context = value;
+                ObjContext = _context as ObjectContext;
+                ObjectSet = ObjContext.CreateObjectSet<TEntity>();
+                QualifiedEntitySetName = string.Format("{0}.{1}", ObjContext.DefaultContainerName, ObjectSet.EntitySet.Name);
+            }
+        }
 
         private ObjectContext ObjContext { get; set; }
 
@@ -25,10 +39,7 @@ namespace KLib.DataAccess.RepositoryImplementations
         internal ObjectContextRepository(TContext context)
         {
             Debug.Assert(context is ObjectContext);
-            Context = context;
-            ObjContext = Context as ObjectContext;
-            ObjectSet = ObjContext.CreateObjectSet<TEntity>();
-            QualifiedEntitySetName = string.Format("{0}.{1}", ObjContext.DefaultContainerName, ObjectSet.EntitySet.Name);
+            Context = context;            
         }
 
         public IQueryable<TEntity> All()

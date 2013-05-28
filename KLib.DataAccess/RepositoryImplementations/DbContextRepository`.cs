@@ -14,7 +14,20 @@ namespace KLib.DataAccess.RepositoryImplementations
         where TEntity : class
         where TContext : IDisposable
     {
-        public TContext Context { get; set; }
+        private TContext _context;
+
+        public TContext Context
+        {
+            get { return _context; }
+            set
+            {
+                if (_context.Equals(value)) return;
+                Debug.Assert(_context is DbContext);
+                _context = value;
+                DbContext = _context as DbContext;
+                DbSet = DbContext.Set<TEntity>();
+            }
+        }
 
         private DbContext DbContext { get; set; }
 
@@ -22,15 +35,12 @@ namespace KLib.DataAccess.RepositoryImplementations
 
         internal DbContextRepository(TContext context)
         {
-            Debug.Assert(context is DbContext);
             Context = context;
-            DbContext = Context as DbContext;
-            DbSet = DbContext.Set<TEntity>();
         }
 
         public IQueryable<TEntity> All()
         {
-            return DbSet;
+            return DbSet.AsQueryable();
         }
 
         public TEntity FindByKey(params object[] keys)
